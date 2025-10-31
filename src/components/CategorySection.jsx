@@ -1,8 +1,7 @@
 
-// src/components/CategorySection.jsx
-import React, { useEffect, useState } from "react";
-
+import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../provider/AuthProvider";
 
 // Plant data
 export const categories = [
@@ -18,17 +17,16 @@ export const categories = [
   { id: 12, name: "Calathea", price: "$32", image: "https://images.pexels.com/photos/6208082/pexels-photo-6208082.jpeg?auto=compress&cs=tinysrgb&w=600" },
   { id: 13, name: "Dracaena", price: "$27", image: "https://images.pexels.com/photos/4503262/pexels-photo-4503262.jpeg?auto=compress&cs=tinysrgb&w=600" },
   { id: 14, name: "Orchid", price: "$55", image: "https://images.pexels.com/photos/6208083/pexels-photo-6208083.jpeg?auto=compress&cs=tinysrgb&w=600" },
-
 ];
 
-// Component
 const CategorySection = () => {
   const navigate = useNavigate();
+  const { user } = useContext(AuthContext); // get logged-in user
   const [loading, setLoading] = useState(true);
 
   // Simulate loading
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 2000); // spinner 0.2s por chole jabe
+    const timer = setTimeout(() => setLoading(false), 1000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -42,6 +40,16 @@ const CategorySection = () => {
       </div>
     );
   }
+
+  const handleViewDetails = (plantId) => {
+    if (user) {
+      // Logged-in user → direct details page
+      navigate(`/details/${plantId}`);
+    } else {
+      // Guest → redirect to login page
+      navigate('/auth/login');
+    }
+  };
 
   return (
     <div className="py-16 px-6 md:px-12 bg-green-50">
@@ -64,10 +72,10 @@ const CategorySection = () => {
               <h3 className="font-semibold text-lg text-green-800">{plant.name}</h3>
               <p className="text-green-700 font-medium">{plant.price}</p>
               <button
-                onClick={() => navigate(`/details/${plant.id}`)}
+                onClick={() => handleViewDetails(plant.id)}
                 className="mt-3 w-full bg-green-700 text-white py-2 rounded-lg hover:bg-green-800 transition-colors"
               >
-                Details
+                View Details
               </button>
             </div>
           </div>

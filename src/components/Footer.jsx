@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className="bg-green-100 py-10 mt-16 text-center md:text-left">
       <div className="max-w-6xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-        {/* 🌿 Brand */}
+        {/*  Brand */}
         <div>
           <h3 className="text-3xl font-bold text-green-800 mb-3">GreenNest</h3>
           <p className="text-green-700">
@@ -23,7 +23,7 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* 📱 Social Media */}
+        {/*  Social Media */}
         <div>
           <h4 className="text-xl font-semibold text-green-800 mb-3">Follow Us</h4>
           <div className="flex justify-center md:justify-start gap-6 text-green-700">

@@ -9,7 +9,7 @@ import PlantDetails from "../pages/PlantDetails";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Authlayout from "../layout/Authlayout";
-import MainLayout from "../layout/MainLayout"; // ✅ Add MainLayout
+import MainLayout from "../layout/MainLayout"; //
 
 export const router = createBrowserRouter([
   {
